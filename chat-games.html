@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OGCraft Chat Games Solver</title>
+    <style>
+        .chat-games-row {
+            display: flex;
+            align-items: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="chat-games-row">
+        <p>A + A + A = </p> <input type="text" id="ans1" placeholder="Sum">
+    </div>
+    <div class="chat-games-row">
+        <p>B + B + B = </p> <input type="text" id="ans2" placeholder="Sum">
+    </div>
+    <div class="chat-games-row">
+        <p>A + B + X = </p> <input type="text" id="ans3" placeholder="Sum">
+    </div>
+</body>
+
+<script>
+    function solveForX() {
+        // Get the values from the input fields
+        let ans1 = parseFloat(document.getElementById("ans1").value);
+        let ans2 = parseFloat(document.getElementById("ans2").value);
+        let ans3 = parseFloat(document.getElementById("ans3").value);
+
+        // Check if the inputs are valid numbers
+        if (isNaN(ans1) || isNaN(ans2) || isNaN(ans3)) {
+            return; // If the values are not valid numbers, do nothing
+        }
+
+        // Calculate A and B
+        let A = ans1 / 3;
+        let B = ans2 / 3;
+
+        // Solve for X: X = ans3 - A - B
+        let X = ans3 - A - B;
+
+        // Display the result of X
+        alert("X = " + X); // You can replace this with a UI element if needed
+    }
+
+    // Attach event listener to the ans3 input field
+    window.onload = function () {
+        const ans3Input = document.getElementById("ans3");
+        ans3Input.addEventListener("keydown", function (event) {
+            // Check if the pressed key is the Enter key (key code 13)
+            if (event.key === "Enter") {
+                event.preventDefault(); // Prevent form submission if it's inside a form
+                solveForX(); // Call solveForX when Enter is pressed
+            }
+        });
+    };
+</script>
+
+</html>
